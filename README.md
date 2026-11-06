@@ -12,7 +12,9 @@
 
 ## 本地准备
 
-建议本仓库克隆到 `C:\workspace\MC_OpenEnd`；参数读取自 `C:\workspace\MC_RM108_Softswitch\parameters\motor`（仅只读，不能修改原仓库）。
+建议本仓库克隆到 `C:\workspace\MC_OpenEnd`。
+
+**电机参数权威来源：** [guojqbq/MC_RM108_Softswitch / main / parameters/motor](https://github.com/guojqbq/MC_RM108_Softswitch/tree/main/parameters/motor)。本项目使用**两个仓库**：`MC_OpenEnd` 存放新仿真模型，`MC_RM108_Softswitch` 仅提供源参数。若本机已有 `C:\workspace\MC_RM108_Softswitch\parameters\motor` 且与远端一致，可只读引用；否则由 Agent 自行读取或独立克隆源仓库，不得擅自更改源仓库文件。运行时记录参数来源 commit SHA；源文件包含脚本、常量参数、Ld/Lq 查表与星/角外特性，后者不等于开绕组/六相已验证外特性。
 
 在仓库根目录启动 `claude`，让 Claude Code 阅读 `CLAUDE.md` 与完整任务指令。先检查 MATLAB 版本、许可、库模块以及参数清单，之后按 P0～P4 分阶段实现和实测验证。**在未运行 MATLAB 之前，任何指标与 PPT 中的仿真结果都不得作为已验证结果。**
 

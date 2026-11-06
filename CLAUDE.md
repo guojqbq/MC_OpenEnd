@@ -33,3 +33,7 @@ P0 环境/参数核验 → P1 星接基线真实运行 → P2 开绕组双逆变
 1. 查看 git status、仓库文件和目标路径；检测 MATLAB 版本/许可与 Simscape 模块。
 2. 从 GitHub `main` 的 `parameters/motor/` 列出并检查所有源文件，核对实际源 commit；建立参数溯源与假设表。
 3. 产出 docs/design_review.md 及初始 VALIDATION.md、progress.md；随即按任务文件逐阶段推进。在没有严重阻塞时不必等待新指令，但每阶段必须真实运行和自测。
+
+## 重要更新：星接 THD v0.3
+
+优先审查 GitHub Release https://github.com/guojqbq/MC_RM108_Softswitch/releases/tag/rm108-star-thd-v0.3 。星接 P1 首选模型为附件 RM108_StarTHD_v0_3.zip 内的 PMSM6T_RM108_StarTHD_v0_3_dev.slx，PWM 7 kHz，MATLAB R2026a。先完整解压、校验附件 SHA-256 0801916ab9f7f21931ad8539b1d66170e7113a82ee967b2b14aafe3ae33aa31f，再阅读 README、九工况验证报告/复算脚本并实际运行；不可用 main 分支旧 v0.1 代替。Release 声称低频整数谐波 THD（≤5 kHz）0.307%–1.468%，相对原方案改善 59.8%–82.1%；≤50 kHz 全部非基波指标为 5.436%–21.909%。这些是来源声明，未经本项目独立复算时不得当作实测结果。三拓扑应首先统一 7 kHz PWM 频率公平比较，再单独开展频率扫描。保留原 Release 包只读，所有改动在 MC_OpenEnd 工作副本内完成。

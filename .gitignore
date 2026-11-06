@@ -1,0 +1,21 @@
+# MATLAB / Simulink temporary output
+*.slxc
+*.autosave
+*.asv
+*.m~
+slprj/
+codegen/
+*.mexw64
+*.mexmaci64
+*.mexa64
+
+# Simulink simulation artifacts to regenerate (keep curated results/metrics.csv and figures when useful)
+results/raw/
+results/*.mat
+results/**/*.mat
+*.log
+
+# OS and editor
+.DS_Store
+Thumbs.db
+.vscode/settings.json

@@ -6,7 +6,9 @@
 2. 开绕组三相 PMSM + 双逆变器 + FOC，含共模/零序电压与零序电流抑制对照；
 3. 双三相（六相）PMSM + 两组三相逆变器 + FOC。
 
-**工程任务全文：** [`docs/Claude_Agent_任务指令_R2026a.md`](docs/Claude_Agent_%E4%BB%BB%E5%8A%A1%E6%8C%87%E4%BB%A4_R2026a.md)
+**最新 Claude Agent 完整主指令：** [docs/AGENT_FULL_TASK.md](docs/AGENT_FULL_TASK.md)
+
+**早期工程细化指令（补充参考）：** [`docs/Claude_Agent_任务指令_R2026a.md`](docs/Claude_Agent_%E4%BB%BB%E5%8A%A1%E6%8C%87%E4%BB%A4_R2026a.md)
 
 **Claude Code 项目入口：** [`CLAUDE.md`](CLAUDE.md)
 

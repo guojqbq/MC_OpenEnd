@@ -8,7 +8,8 @@
 
 - 当前 Git 仓库： https://github.com/guojqbq/MC_OpenEnd
 - **本工程工作目录： C:\workspace\MC_OpenEnd** （如果本地仓库在其他位置，以实际 Git 根目录为准，不要把产物写到原项目）。
-- **电机参数唯一优先来源（只读）： C:\workspace\MC_RM108_Softswitch\parameters\motor** 。
+- **电机参数权威来源（只读）： GitHub 仓库 `guojqbq/MC_RM108_Softswitch` 的 `main` 分支 `parameters/motor/`**，URL： https://github.com/guojqbq/MC_RM108_Softswitch/tree/main/parameters/motor 。这与当前开发仓库 `MC_OpenEnd` 是两个不同仓库，不要混淆。
+- 本地路径 `C:\workspace\MC_RM108_Softswitch\parameters\motor` **仅是可选的本地副本**：若存在，先核对仓库 remote、分支、commit、文件完整性；不存在就读取 GitHub 或克隆到独立只读参考目录。不得因本地目录不存在而报参数缺失，也不得修改原仓库。每次仿真都要在参数溯源中记录实际采用的来源 commit SHA（首次核验的 main 参考 commit：`e4da21c294b4165d707ba2a1a44b4823b8e70725`，以后以当时获取的实际 commit 为准）。
 - 不得在 C:\workspace\MC_RM108_Softswitch 下新建本项目的工作目录；旧指令中如有该做法，以本条为准。
 - 不修改原仓库参数、源代码或固件，不执行刷写、上电调试、实物电机驱动、台架操作。
 - 分阶段提交小粒度 Git commit，记录文件和 MATLAB 运行证据；禁止提交未经授权的大量原始输出或敏感文件。
@@ -25,6 +26,15 @@
 核心研究问题：在可追溯且公平的供电、电流/器件、材料与控制条件下，三种架构分别在高速能力、动态性能、损耗、谐波、共模/零序问题、成本和故障容错等方面表现如何？**不能预设开绕组全面最好。**
 
 ## 2. 参数读取、单位与可追溯性
+
+**已核实源目录主要文件（先逐个查阅，不得只用一个旧的手工参数表）：**
+
+- `motor_parameter.md`：电气基本常量（已见 Rs=0.0289 Ω、Ld=0.442 mH、Lq=1.931 mH、ψf=0.161 Wb、p=3、Vdc=844 V）。
+- `load_rm108_motor_parameters.m`：结构化参数加载函数，包含 J、B、额定/最大电流、逆变器参数及星角包络引用。
+- `LdLq_lookup_from_screenshots.xlsx`：饱和电感表；要检查坐标、单位、数据来源、插值边界，不以常数模型默认替代全部工况。
+- `RM108_Motor_External_Characteristics_Specification.md`、`RM108_Star_Delta_Torque_Speed_Data.csv` 与 `.xlsx`：已知星接/三角接的外特性和设计约束。只可作为源电机/设计工况的参考及交叉校核，**不可当作开绕组/双三相实际仿真结果**。
+
+**发现的待确认数据及模型风险：** 当前加载脚本写入 `L0=0.5*Ld`，这属于估计值而非测得的零序电感，开绕组零序环流仿真须标注假设并扫描 L0；`fsw=20kHz` 对应 PWM 周期 50μs，而脚本写入 `deadtime=10μs`，占周期 20%，必须核验是否真实适用，不能不加说明就用于共模/损耗结论；脚本中 `I_trip=700A` 与 `I_max_pk=735.4A` 需要澄清跳闸值和最大允许值定义及保护动作。缺乏确认时不声称这些条件下的系统真实性能。
 
 第一步枚举参数目录文件、识别格式并提取（如存在）：极对数、Rs、Ld、Lq、永磁磁链、转动惯量、粘性阻尼、额定电流和最大电流（峰值/RMS）、母线电压、基速/最高速、零序电感、温度与饱和相关参数、PWM/采样周期、器件损耗数据、适用绕组连接方式。
 

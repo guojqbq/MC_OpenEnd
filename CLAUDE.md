@@ -2,9 +2,13 @@
 
 你正在开发 MATLAB/Simulink R2026a 的三种 PMSM 驱动拓扑比较研究。
 
+## 当前唯一主任务入口
+
+**首先完整阅读 [docs/AGENT_FULL_TASK.md](docs/AGENT_FULL_TASK.md) 并按 P0→P4 连续执行。** 该文件汇总了最新全部要求：THD v0.3 Release、7 kHz、公平对照、删除旧星—角切换逻辑、开绕组共模/零序抑制、双三相 FOC、真实仿真/PPT。旧任务指令作为细化技术参考；如有冲突，以 AGENT_FULL_TASK.md 为准。
+
 ## 优先级最高的任务源
 
-**先完整阅读 [docs/Claude_Agent_任务指令_R2026a.md](docs/Claude_Agent_任务指令_R2026a.md)，这是本项目的工程规格与验收清单。**
+同时阅读 [docs/Claude_Agent_任务指令_R2026a.md](docs/Claude_Agent_任务指令_R2026a.md)，作为具体技术验收补充。
 不要仅根据 README 生成简介、仿真框图或伪造结果。交付必须包含经过实际 MATLAB 验证的电机电气模型、FOC 和对比指标。
 
 ## 路径与安全约束
